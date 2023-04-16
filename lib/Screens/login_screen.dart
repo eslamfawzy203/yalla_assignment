@@ -6,8 +6,8 @@ import 'package:yalla_assignment/Screens/profile_page.dart';
 //import 'package:yalla_assignment/Screens/screen1.dart';
 //import '../Widgets/customized_text_form_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:yalla_assignment/local/save_data.dart';
 
-// ignore: must_be_immutable
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -19,7 +19,21 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final mykey = GlobalKey<FormState>();
-  late SharedPreferences prefs;
+  late SharedPreferences
+      prefs; // declared here to be assigned from onpressed{} down
+
+  @override
+  void didChangeDependencies() async {
+    prefs = await SharedPreferences.getInstance(); // Here is to initialization
+
+    super.didChangeDependencies();
+  }
+
+  saveAndPrintPassword() async {
+    await prefs.setString("userPassword", passwordController.text);
+    final userPassword = prefs.getString("userPassword");
+    debugPrint(userPassword);
+  }
 
   @override
   void dispose() {
@@ -66,19 +80,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         return "This field cannot be empty";
                       }
                     },
-                    decoration: const InputDecoration(suffixIcon: Icon(Icons.remove_red_eye),
-                        border: OutlineInputBorder(), labelText: "Password")),
+                    decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.remove_red_eye),
+                        border: OutlineInputBorder(),
+                        labelText: "Password")),
                 const SizedBox(height: 20),
                 TextButton.icon(
                   icon: const Icon(Icons.login),
                   label: const Text("Login"),
-                  onPressed: () {
+                  onPressed: () async {
                     if (mykey.currentState!.validate()) {
-                      
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (_) => const HomeBase()),
                           (_) => false);
-                     // prefs.setString('Password', passwordController.text);
+                      saveAndPrintPassword();
                     }
                   },
                 ),
@@ -87,29 +102,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextButton.icon(
                     onPressed: () {
-                      if (mykey.currentState!.validate()) {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (_) => ProfilePage()),
-                            (_) => false);
-                      }
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (_) => ProfilePage()),
+                          (_) => false);
                     },
                     icon: const Icon(Icons.account_circle),
                     label: const Text('Create Account')),
                 const SizedBox(height: 20),
                 TextButton.icon(
                     onPressed: () {
-                      if (mykey.currentState!.validate()) {
-                        // Navigator.of(context).pushAndRemoveUntil(
-                        //     MaterialPageRoute(
-                        //       builder: (_) =>
-                        //           const ForgetPassword(),
-                        // ),
-                        // (_) => false);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ForgetPassword()));
-                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ForgetPassword()));
                     },
                     icon: const Icon(Icons.password),
                     label: const Text('Forget Password ?'))

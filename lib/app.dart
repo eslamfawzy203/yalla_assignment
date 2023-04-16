@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+// import 'package:yalla_assignment/Screens/grid_view.dart';
 // import 'package:yalla_assignment/Screens/home_base.dart';
 import 'package:yalla_assignment/Screens/login_screen.dart';
+//import 'package:yalla_assignment/Screens/spalsh_screen.dart';
 // import 'package:yalla_assignment/Screens/profile_page.dart';
 // import 'Screens/forget_password.dart';
+
+
 
 
 
@@ -17,9 +21,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:// HomeBase() 
+      home: const 
+      // MyGridView()
+       LoginScreen()
+      // const SplashScreen()
+      // HomeBase() 
       //ProfilePage()
-      const LoginScreen()
+     // const LoginScreen()
       // ForgetPassword(),
     );
   }
