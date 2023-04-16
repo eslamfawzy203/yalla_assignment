@@ -3,7 +3,7 @@ import 'package:yalla_assignment/Screens/forget_password.dart';
 //import 'package:yalla_assignment/Screens/forget_password.dart';
 import 'package:yalla_assignment/Screens/home_base.dart';
 import 'package:yalla_assignment/Screens/profile_page.dart';
-import 'package:yalla_assignment/Screens/screen1.dart';
+//import 'package:yalla_assignment/Screens/screen1.dart';
 //import '../Widgets/customized_text_form_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
