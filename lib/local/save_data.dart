@@ -4,8 +4,11 @@
 
 
 // class SaveData {
+//  final  SharedPreferences
+//       prefs;
+//       SaveData(this.prefs)
 //     saveAndPrintPassword() async {
-//     
+    
 // await prefs.setString("userPassword", passwordController.text);
 //     final userPassword = prefs.getString("userPassword");
 //     debugPrint(userPassword);

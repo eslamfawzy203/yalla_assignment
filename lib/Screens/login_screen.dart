@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yalla_assignment/Screens/forget_password.dart';
 //import 'package:yalla_assignment/Screens/forget_password.dart';
 import 'package:yalla_assignment/Screens/home_base.dart';
@@ -7,44 +9,37 @@ import 'package:yalla_assignment/Screens/profile_page.dart';
 //import '../Widgets/customized_text_form_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:yalla_assignment/local/save_data.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:yalla_assignment/Widgets/customized_text_form_field.dart';
+import 'package:yalla_assignment/local/i_local_storage_caller.dart';
+import 'package:yalla_assignment/local/shared_pref_local_storage_caller.dart';
+import 'package:yalla_assignment/models/login_model.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+final StateProvider<bool> visibilityOffProvider =
+    StateProvider<bool>((ref) => true); // Here is to be global to the whole App
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  final mykey = GlobalKey<FormState>();
-  late SharedPreferences
-      prefs; // declared here to be assigned from onpressed{} down
-
-  @override
-  void didChangeDependencies() async {
-    prefs = await SharedPreferences.getInstance(); // Here is to initialization
-
-    super.didChangeDependencies();
-  }
-
-  saveAndPrintPassword() async {
-    await prefs.setString("userPassword", passwordController.text);
-    final userPassword = prefs.getString("userPassword");
-    debugPrint(userPassword);
-  }
+class LoginScreen extends HookConsumerWidget {
+   final SharedPreferences sharedPreferences;
+   const LoginScreen({super.key, required this.sharedPreferences});
 
   @override
-  void dispose() {
-    super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-  }
+  Widget build(BuildContext context, WidgetRef ref) {
+    TextEditingController emailController = useTextEditingController();
+    TextEditingController passwordController = useTextEditingController();
+    final bool visibilityOff = ref.watch(visibilityOffProvider);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+    // bool visibility = true;
+    final mykey = GlobalKey<FormState>();
+    //late SharedPreferences
+       // prefs; // declared here to be assigned from onpressed{} down
+    // saveAndPrintPassword() async {
+    //   prefs = await SharedPreferences.getInstance();
+    //   await prefs.setString("userPassword", passwordController.text);
+    //   final userPassword = prefs.getString("userPassword");
+    //   debugPrint(userPassword);
+    // }
+ return Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(30),
@@ -58,42 +53,59 @@ class _LoginScreenState extends State<LoginScreen> {
                       'https://th.bing.com/th/id/OIP.jRriUGFXWaQLk5WJydB7pAHaFj?pid=ImgDet&rs=1'),
                 ),
                 const SizedBox(height: 20),
-                TextFormField(
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), labelText: "Email"),
-                    controller: emailController,
-                    validator: (val) {
-                      if (val!.length >= 12 && val.contains('@')) {
-                        return null;
-                      } else {
-                        return 'Enter valid value';
-                      }
-                    }),
+                CustomizedTextFormField(
+                  myController: emailController,
+                  hintText: 'Kindly enter your email',
+                  labelText: 'Email',
+                  validator: (val) {
+                    if (val!.length >= 12 && val.contains('@')) {
+                      return null;
+                    } else {
+                      return 'Enter valid value';
+                    }
+                  },
+                //  showSuffixIcon: false,
+                ),
                 const SizedBox(height: 30),
-                TextFormField(
-                    obscureText: true,
-                    controller: passwordController,
-                    validator: (val) {
-                      if (val!.isNotEmpty) {
-                        return null;
-                      } else {
-                        return "This field cannot be empty";
-                      }
-                    },
-                    decoration: const InputDecoration(
-                        suffixIcon: Icon(Icons.remove_red_eye),
-                        border: OutlineInputBorder(),
-                        labelText: "Password")),
+                CustomizedTextFormField( 
+                  myController: passwordController,
+                  labelText: 'Password',
+                  onTap: () {
+                    ref.watch(visibilityOffProvider.notifier).state =
+                        !visibilityOff;
+                    //  visibility = !visibility;
+                  },
+                  obscureText: visibilityOff ? true : false,
+                  iconData:
+                      visibilityOff ? Icons.visibility_off : Icons.visibility,
+                  validator: (val) {
+                    if (val!.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "This field cannot be empty";
+                    }
+                  },
+                ),
+                
                 const SizedBox(height: 20),
                 TextButton.icon(
                   icon: const Icon(Icons.login),
                   label: const Text("Login"),
                   onPressed: () async {
                     if (mykey.currentState!.validate()) {
-                      Navigator.of(context).pushAndRemoveUntil(
+                      await SharedPrefsLocalStorageCaller(
+                            sharedPreferences:sharedPreferences)
+                        .saveData(
+                            key: 'user',
+                            value: LogInModel(
+                                    email: emailController.text,
+                                    password: passwordController.text)
+                                .toJson(),
+                            dataType: DataType.string)
+                        .whenComplete(() => Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (_) => const HomeBase()),
-                          (_) => false);
-                      saveAndPrintPassword();
+                          (_) => false));
+                      // saveAndPrintPassword();
                     }
                   },
                 ),
@@ -126,3 +138,17 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+
+ 
+
+  // @override
+  // void didChangeDependencies() async {
+  //   prefs = await SharedPreferences.getInstance(); // Here is to initialization
+  //   super.didChangeDependencies();
+  // }
+
+ 
+
+  
+

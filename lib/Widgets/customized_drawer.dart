@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
 // import 'package:yalla_assignment/Screens/login_screen.dart';
 import 'package:yalla_assignment/Screens/screen1.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:yalla_assignment/Screens/test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yalla_assignment/local/i_local_storage_caller.dart';
+import 'package:yalla_assignment/local/shared_pref_local_storage_caller.dart';
+import 'package:yalla_assignment/models/login_model.dart';
 
-// String? _password;
-
-class CustomizedDrawer extends StatefulWidget {
-  const CustomizedDrawer({super.key});
-
-  @override
-  State<CustomizedDrawer> createState() => _CustomizedDrawerState();
-}
-
-class _CustomizedDrawerState extends State<CustomizedDrawer> {
-   
-  // getPassword() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.getString("userPassword");
-  //   setState(() {
-  //      _password = prefs.getString("userPassword")!;
-  //   });
-
-  //  // debugPrint(_password);
-  // }
+class CustomizedDrawer extends StatelessWidget {
+  final LogInModel user;
+  final SharedPreferences sharedPreferences;
+  const CustomizedDrawer(
+      {super.key, required this.user, required this.sharedPreferences});
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +23,47 @@ class _CustomizedDrawerState extends State<CustomizedDrawer> {
               backgroundColor: Colors.amber,
             )),
         const SizedBox(height: 15),
-        const Text(''),
+        Text(user.email),
+        Text(user.password),
+        const SizedBox(height: 15),
+        ElevatedButton(
+            onPressed: () async {
+              SharedPrefsLocalStorageCaller(
+                      sharedPreferences: sharedPreferences)
+                  .restoreData(key: 'user', dataType: DataType.string)
+                  .toString();
+              debugPrint(sharedPreferences.getString('user').toString());
+            },
+            child: const Text('Retrieve')),
         const SizedBox(height: 15),
         ElevatedButton(
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => const ScreenOne()),
                   (route) => false);
-            //  getPassword();
-              
+              //  getPassword();
             },
             child: const Text('Logout'))
       ],
     ));
   }
 }
+
+// @override
+// void didChangeDependencies() async {
+//   sharedPreferences = await SharedPreferences.getInstance();
+//   super.didChangeDependencies();
+// }
+
+  // getPassword() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.getString("userPassword");
+  //   setState(() {
+  //      _password = prefs.getString("userPassword")!;
+  //   });
+
+  //  // debugPrint(_password);
+  // }
+
+ 
+

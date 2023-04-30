@@ -50,46 +50,52 @@ class ProfilePage extends StatelessWidget {
                     color: Colors.grey)),
             const SizedBox(height: 40),
             CustomizedTextFormField(
-                myController: controller1,
-                validator: (p0) {
-                  if (p0!.isNotEmpty) {
-                    return null;
-                  } else {
-                    return 'This field cannot be empty';
-                  }
-                },
-                hintText: 'Kindly enter your name',
-                labelText: 'Name'),
+              myController: controller1,
+              validator: (p0) {
+                if (p0!.isNotEmpty) {
+                  return null;
+                } else {
+                  return 'This field cannot be empty';
+                }
+              },
+              hintText: 'Kindly enter your name',
+              labelText: 'Name',
+            ),
             const SizedBox(height: 30),
             CustomizedTextFormField(
-                myController: controller2,
-                validator: (p0) {
-                  if (p0!.isNotEmpty) {
-                    return null;
-                  } else {
-                    return 'This field cannot be empty';
-                  }
-                },
-                hintText: 'Kindly Enter password',
-                labelText: 'Password'),
+              myController: controller2,
+              validator: (p0) {
+                if (p0!.isNotEmpty) {
+                  return null;
+                } else {
+                  return 'This field cannot be empty';
+                }
+              },
+              hintText: 'Kindly Enter password',
+              labelText: 'Password',
+            ),
             const SizedBox(height: 30),
             CustomizedTextFormField(
-                myController: controller3,
-                validator: (p0) {
-                  if (p0!.isNotEmpty) {
-                    return null;
-                  } else {
-                    return 'This field cannot be empty';
-                  }
-                },
-                hintText: 'Kindly enter your address',
-                labelText: 'Address',),
+              myController: controller3,
+              validator: (p0) {
+                if (p0!.isNotEmpty) {
+                  return null;
+                } else {
+                  return 'This field cannot be empty';
+                }
+              },
+              hintText: 'Kindly enter your address',
+              labelText: 'Address',
+            ),
             const SizedBox(height: 30),
             ElevatedButton(
                 onPressed: () {
-                 if(mykey.currentState!.validate()){ Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const ScreenTwo()));} 
-                 
+                  if (mykey.currentState!.validate()) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ScreenTwo()));
+                  }
                 },
                 child: const Text(
                   'Register',

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yalla_assignment/Screens/grid_view.dart';
 // import 'package:yalla_assignment/Screens/grid_view.dart';
 // import 'package:yalla_assignment/Screens/home_base.dart';
 import 'package:yalla_assignment/Screens/login_screen.dart';
-//import 'package:yalla_assignment/Screens/spalsh_screen.dart';
+import 'package:yalla_assignment/Screens/screen2.dart';
+import 'package:yalla_assignment/Screens/spalsh_screen.dart';
+import 'package:yalla_assignment/Screens/test.dart';
+import 'package:yalla_assignment/Widgets/customized_drop_down_button.dart.dart';
 // import 'package:yalla_assignment/Screens/profile_page.dart';
-// import 'Screens/forget_password.dart';
+ import 'Screens/forget_password.dart';
+ 
+ 
 
-
-
-
-
-
+late final SharedPreferences sharedPreferences;
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -21,14 +24,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const 
-      // MyGridView()
-       LoginScreen()
-      // const SplashScreen()
+      home: ScreenTwo()
+      // Test()
+        
+      //CustomizedDropDownButton()
+      //const MyGridView()
+      //const SplashScreen()
+      // const LoginScreen(sharedPreferences:sharedPreferences),
+      // SplashScreen() 
       // HomeBase() 
       //ProfilePage()
      // const LoginScreen()
-      // ForgetPassword(),
+     // const ForgetPassword(),
     );
   }
 }

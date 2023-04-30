@@ -11,7 +11,7 @@ class MyGridView extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: GridView.builder(
-          itemCount: 8,
+          itemCount: 4,
           itemBuilder: (context, index) {
             return const CustomizedContainer();
           },
