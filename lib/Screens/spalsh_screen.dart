@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
           height: double.infinity,
           width: double.infinity,
           fit: BoxFit.contain,
-          'https://th.bing.com/th/id/OIP.jRriUGFXWaQLk5WJydB7pAHaFj?pid=ImgDet&rs=1'),
+          'https://th.bing.com/th/id/OIP.jRriUGFXWaQLk5WJydB7pAHaFj?pid=ImgDet&rs=1')
     );
   }
 }
