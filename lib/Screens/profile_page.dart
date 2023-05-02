@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:yalla_assignment/Screens/screen1.dart';
-import 'package:yalla_assignment/Screens/screen2.dart';
+import 'package:yalla_assignment/Screens/Screen_2/screen2_R.dart';
 import 'package:yalla_assignment/Widgets/customized_text_form_field.dart';
 
 // ignore: must_be_immutable
@@ -94,7 +93,7 @@ class ProfilePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ScreenTwo()));
+                            builder: (context) => const ScreenTwoR()));
                   }
                 },
                 child: const Text(

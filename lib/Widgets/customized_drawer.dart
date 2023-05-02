@@ -49,21 +49,6 @@ class CustomizedDrawer extends StatelessWidget {
   }
 }
 
-// @override
-// void didChangeDependencies() async {
-//   sharedPreferences = await SharedPreferences.getInstance();
-//   super.didChangeDependencies();
-// }
-
-  // getPassword() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.getString("userPassword");
-  //   setState(() {
-  //      _password = prefs.getString("userPassword")!;
-  //   });
-
-  //  // debugPrint(_password);
-  // }
 
  
 

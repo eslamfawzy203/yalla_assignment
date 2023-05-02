@@ -1,5 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'i_local_storage_caller.dart';
 
 class SharedPrefsLocalStorageCaller implements ILocalStorageCaller {

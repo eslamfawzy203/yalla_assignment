@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yalla_assignment/Screens/forget_password.dart';
-//import 'package:yalla_assignment/Screens/forget_password.dart';
 import 'package:yalla_assignment/Screens/home_base.dart';
 import 'package:yalla_assignment/Screens/profile_page.dart';
-//import 'package:yalla_assignment/Screens/screen1.dart';
-//import '../Widgets/customized_text_form_field.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-//import 'package:yalla_assignment/local/save_data.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:yalla_assignment/Widgets/customized_text_form_field.dart';
@@ -31,14 +25,7 @@ class LoginScreen extends HookConsumerWidget {
 
     // bool visibility = true;
     final mykey = GlobalKey<FormState>();
-    //late SharedPreferences
-       // prefs; // declared here to be assigned from onpressed{} down
-    // saveAndPrintPassword() async {
-    //   prefs = await SharedPreferences.getInstance();
-    //   await prefs.setString("userPassword", passwordController.text);
-    //   final userPassword = prefs.getString("userPassword");
-    //   debugPrint(userPassword);
-    // }
+    
  return Scaffold(
       body: Center(
         child: Padding(

@@ -117,10 +117,48 @@
 //       },
 //     ));
 
-void main() {
-  List<String> mealNames = ['Shawerma', 'Burger', 'Pizza', 'Pasta', 'Sausage'];
-  List<int> price = [40, 30, 13, 12, 15];
-  String selectedItem = 'A-Z';
-  bool isSorted = false;
-  print(mealNames.reversed.toList());
-}
+// void main() {
+//   List<String> mealNames = ['Shawerma', 'Burger', 'Pizza', 'Pasta', 'Sausage'];
+//   List<int> price = [40, 30, 13, 12, 15];
+//   String selectedItem = 'A-Z';
+//   bool isSorted = false;
+//   print(mealNames.reversed.toList());
+// }
+
+
+
+
+//DropdownButton(
+          //   hint: const Text('Sort'),
+          //   items: options
+          //       .map((selection) =>
+          //           DropdownMenuItem(value: selection, child: Text(selection)))
+          //       .toList(),
+          //   value: selectedOption,
+          //   onChanged: (newValue) {
+          //     ref.watch(selectionPrivider.notifier).state = 
+          //      (selectedOption = newValue as String?)!;
+          //     if (newValue == 'A-z') {
+          //       ref.watch(excutionPrivider.notifier).state =
+          //           Functions().sortByName();
+          //     } else {
+          //       ref.watch(excutionPrivider.notifier).state =
+          //           Functions().sortByPrice();
+          //     }
+          //   },
+          // )
+
+          //late SharedPreferences
+       // prefs; // declared here to be assigned from onpressed{} down
+    // saveAndPrintPassword() async {
+    //   prefs = await SharedPreferences.getInstance();
+    //   await prefs.setString("userPassword", passwordController.text);
+    //   final userPassword = prefs.getString("userPassword");
+    //   debugPrint(userPassword);
+    // }
+
+    // final item = mealNames[index];
+            // final price1 = price[index];
+
+             // Text("Price ${index + 10}"),
+             // Text('Item ${index + 1}'),

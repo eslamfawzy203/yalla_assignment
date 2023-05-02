@@ -1,17 +1,42 @@
-import 'package:flutter/material.dart';
+// import 'package:yalla_assignment/Screens/Screen_2/product.dart';
+// import 'package:collection/collection.dart';
 
-class Functions{
+// final meals = [
+//   Meal(name: 'Shawerma', price: 99),
+//   Meal(name: 'Pasta', price: 40),
+//   Meal(name: 'Pizza', price: 90),
+//   Meal(name: 'Grilled Chiken', price: 120),
+//   Meal(name: 'Sausage', price: 40)
+// ];
+
+// class Functions {
+//   sortByName() {
+//    // meals.sort((a, b) => a.name.compareTo(b.name));
+//      return meals.sorted((a, b) => a.name.compareTo(b.name));
+//     // meals.sort((a, b) => a.name.compareTo(b.name));
+//   }
+// }
+
   //For Example :
- static Map<String, int> meals = {
-    "Shawerma": 40,
-    'Burger': 30,
-    'Pizza': 80,
-    'Pasta': 50
-  };
+  // List<String> meals = [
+  //   "Shawerma",
+  //   "Sausage",
+  //   "Pizza",
+  //   "Pasta",
+  //   "Grilled Chicken"
+  // ];
+  // List<String> price = ["40", "70", "90", "60", "120"];
 
- var alphabaticalSorting =
-    Map.fromEntries(meals.entries.toList()..sort((e1, e2) => e1.key.compareTo(e2.key)));
+  // String sortByName() {
+  //   meals.sort();
+  //   return meals.toString();
+  // }
 
-    lowToHighPriceSortig() => Map.fromEntries(
-    meals.entries.toList()..sort((e1, e2) => e1.value.compareTo(e2.value)));
-}
+  // String sortByPrice() {
+  //   price.sort();
+  //   return price.toString();
+  // }
+
+
+
+    
